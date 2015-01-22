@@ -19,7 +19,7 @@ sudo chmod a+x /usr/local/bin/bri
 4. Restart.
 
 ## Usage
-Just do `bri --help` and you'll see possible options.
+Just do `bri --help` and you'll see possible options.  
 **TL;DR**
 Use `bri +` or `bri -` to increase or decrease the brightness; set the value directly with `bri <number>` (the `number` is usually in 1..1000).
 
@@ -27,6 +27,7 @@ Use `bri +` or `bri -` to increase or decrease the brightness; set the value dir
 Go to **Control panel > Keyboard > Keyboard Shortcuts > Custom Shortcuts** and bind two custom commands:
 * `bri +` to the _BrightnessUp_ key (usually _Fn + &uarr;_) and
 * `bri -` to the _BrightnessDown_ key (usually _Fn + &darr;_).
+
 After you restart your desktop environment the keys should be working.
 
 ## Tested on
@@ -37,4 +38,4 @@ After you restart your desktop environment the keys should be working.
 Roman Melnyk <email.rom.melnyk@gmail.com>
 
 ## Thanks to:
-[AskUbunt](http://askubuntu.com/) for the idea
+[AskUbuntu](http://askubuntu.com/) for the idea
