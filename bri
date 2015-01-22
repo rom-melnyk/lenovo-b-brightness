@@ -1,0 +1,32 @@
+#!/bin/bash
+
+BRI_FILEDIR=/sys/class/backlight/intel_backlight
+BRI=$(cat $BRI_FILEDIR/brightness)
+MAX_BRI=$(cat $BRI_FILEDIR/max_brightness)
+STEPS=10
+
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+  echo -e "\nControls the screen brightness"
+  echo -e "\nUsaage:\n\tbri OPTION\nwhere OPTION is one of following:"
+  echo -e "\t+ or -\t\tincreases or decreases brightnes"
+  echo -e "\tnumeric\t\tsets the brightness preciesely (must be in the range 0..$MAX_BRI)"
+  echo -e "\t-h, --help\tshows this screen"
+  echo -e "\n"
+  exit
+fi
+
+# ------------------------------------------------------------
+if [ "$1" == "+" -o "$1" == "-" ]; then
+  [ "$1" == "+" ] && BRI=$((BRI + MAX_BRI / STEPS)) || BRI=$((BRI - MAX_BRI / STEPS))
+elif [[ $(echo "$1" | grep "^[0-9]\+$") ]]; then
+  BRI=$1
+else
+  BRI=$((MAX_BRI / 2))
+fi
+
+[ "$BRI" -lt "0" ] && BRI=0
+[ "$BRI" -gt "$MAX_BRI" ] && BRI=$MAX_BRI
+
+# | sudo tee
+echo $BRI | tee $BRI_FILEDIR/brightness > /dev/null
+
