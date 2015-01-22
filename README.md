@@ -2,22 +2,21 @@
 This script helps Ubuntu users who use Lenovo B5** laptops to solve the issue _when the brightness buttons do not work._
 
 ## Install
-1. Allow writing into the file that controls the brightness.
+1. Allow writing into the file that controls the brightness.  
    As the file is reset each time on system boot, we need to do some tricks here:
-   add following line to the `/etc/rc.local` before the `exit 0` line
+   add following line to the `/etc/rc.local` before the `exit 0` line:
 ```bash
 chmod a+w /sys/class/backlight/intel_backlight/brightness
 ```
-2. Download the script.
-   The destination might change but make sure it's covered by the `$PATH` variable
+2. Download the script. The destination might change but make sure it's covered by the `$PATH` variable:
 ```bash
 sudo wget --output-document=/usr/local/bin/bri https://raw.githubusercontent.com/rom-melnyk/lenovo-b-brightness/master/bri
 ```
-3. Make the file executable; pay attention to the file destination
+3. Make the file executable; pay attention to the file destination:
 ```bash
 sudo chmod a+x /usr/local/bin/bri
 ```
-4. Restart
+4. Restart.
 
 ## Usage
 Just do `bri --help` and you'll see possible options.
