@@ -1,5 +1,5 @@
 # The script for brightness control in Ubuntu for Lenove B-series
-This script helps Ubuntu users who use Lenovo B5** laptops to solve the issue _when the brightness buttons do not work._
+This script helps Ubuntu users who use Lenovo B5xx laptops to solve the issue _when the brightness buttons do not work._
 
 ## Install
 1. Allow writing into the file that controls the brightness.  
@@ -27,6 +27,8 @@ Use `bri +` or `bri -` to increase or decrease the brightness; set the value dir
 Go to **Control panel > Keyboard > Keyboard Shortcuts > Custom Shortcuts** and bind two custom commands:
 * `bri +` to the _BrightnessUp_ key (usually _Fn + &uarr;_) and
 * `bri -` to the _BrightnessDown_ key (usually _Fn + &darr;_).
+  * On Mint 17.1 you need to remove original _BrightnessUp_/_BrightnessDown_ keybindings (in **Keyboard Shortcuts > System > Hardware** section) to make your shourtcuts work.  
+   If you cannot remove original shoorcuts, replace 'em with something you'll never use.
 
 After you restart your desktop environment the keys should be working.
 
