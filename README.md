@@ -1,4 +1,4 @@
-# The script for brightness control in Ubuntu for Lenove B-series
+# The script for brightness control in Ubuntu for Lenove B- and V-series
 This script helps Ubuntu users who use Lenovo B5xx laptops to solve the issue _when the brightness buttons do not work._
 
 ## Install
@@ -34,7 +34,8 @@ After you restart your desktop environment the keys should be working.
 
 ## Tested on
 * Ubuntu 13.04 up to 14.10
-* Mint 17.0, 17.1 both with Cinnamon
+* Mint 17.0, 17.1, 18.1 both with Cinnamon
+* Fedora 25 (assiging of `bri` commands to \<IncreaseBrightness\>/\<DecreaseBrightness\> buttons does not work however command itself works fine. So you can change screen brightness from terminal)
 
 ## Credits
 Roman Melnyk <email.rom.melnyk@gmail.com>
