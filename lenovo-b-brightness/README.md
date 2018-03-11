@@ -1,6 +1,6 @@
-# The script for brightness control in Ubuntu for Lenove B- and V-series
+# Brightness control in Ubuntu for Lenove B- and V-series
 
-This script helps Ubuntu users who use Lenovo B5xx laptops to solve the issue _when the brightness buttons do not work._
+This script helps Ubuntu users who use Lenovo B- or V- series laptops to solve the issue _when the brightness buttons do not work._
 
 
 
@@ -54,5 +54,5 @@ After you restart your desktop environment the keys should be working.
 
 ## Thanks to:
 
-[AskUbuntu](http://askubuntu.com/) for the idea
+[AskUbuntu](http://askubuntu.com/) for the idea.
 
