@@ -14,7 +14,7 @@ This script helps Ubuntu users who use Lenovo B5xx laptops to solve the issue _w
    ```
 2. Download the script. The destination might change but make sure it's covered by the `$PATH` variable:  
    ```
-   sudo wget --output-document=/usr/local/bin/bri https://raw.githubusercontent.com/rom-melnyk/lenovo-b-brightness/master/bri
+   sudo wget --output-document=/usr/local/bin/bri https://raw.githubusercontent.com/rom-melnyk/linux-scripts/master/lenovo-b-brightness/bri
    ```
 3. Make the file executable; pay attention to the file destination:  
    ```
