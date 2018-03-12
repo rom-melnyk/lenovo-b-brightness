@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# ---------------------------------------------
+
+show_help () {
+    echo -e "   Usage:        monitor-rotate [WAY]"
+    echo -e "                 monitor-rotate [-h|--help]"
+    echo -e ""
+    echo -e "   WAY           optional. One of normal, right, inverted, left."
+    echo -e "                 Can be also n, r, i, l."
+    echo -e "                 If omitted, next rotation clockwise is applied." 
+    echo -e ""
+    echo -e "   --h, -help    Shows this screen."
+    echo -e ""
+    echo -e "By Roman Melnyk for HP Rebolve 810"
+    echo -e "Credits:\n<https://linuxappfinder.com/blog/auto_screen_rotation_in_ubuntu>\n<https://gist.github.com/mildmojo/48e9025070a2ba40795c>"
+    echo -e "\n"
+}
+
+
+do_rotate () {
+    xrandr --output $1 --rotate $2
+
+    TRANSFORM="Coordinate Transformation Matrix"
+
+    case $2 in
+        normal)
+            xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 1 0 0 0 1 0 0 0 1
+            xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 1 0 0 0 1 0 0 0 1
+            ;;
+        inverted)
+            xinput set-prop "$TOUCHPAD"    "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
+            xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
+            ;;
+        left)
+            xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
+            xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
+            ;;
+        right)
+            xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
+            xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
+            ;;
+    esac
+}
+
+# ---------------------------------------------
+
+FILE=/tmp/monitor-rotate.position
+
+NEW_SCR_ROT=
+
+if [ -n "$1" ]; then
+    case "$1" in
+        -h|--help)
+            show_help
+            exit ;;
+        r|rigth)
+            NEW_SCR_ROT=right ;;
+        i|inverted)
+            NEW_SCR_ROT=inverted ;;
+        l|left)
+            NEW_SCR_ROT=left ;;
+        *)
+            NEW_SCR_ROT=normal ;;
+    esac
+
+else
+    CURRENT_SCR_ROT=normal
+    if [ -f $FILE ]; then
+        CURRENT_SCR_ROT=$(cat $FILE)
+    fi
+
+    case $CURRENT_SCR_ROT in
+        normal)
+            NEW_SCR_ROT=right ;;
+        right)
+            NEW_SCR_ROT=inverted ;;
+        inverted)
+            NEW_SCR_ROT=left ;;
+        left)
+            NEW_SCR_ROT=normal ;;
+        *)
+            NEW_SCR_ROT=normal ;;
+    esac
+fi
+
+DISPLAY=":0"
+XAUTHORITY=/home/rom/.Xauthority
+
+MONITOR=$(xrandr --current | grep primary | sed -e 's/ .*//g')
+TOUCHSCREEN="Atmel Atmel maXTouch Digitizer"
+TOUCHPAD="AlpsPS/2 ALPS GlidePoint"
+
+echo "$NEW_SCR_ROT" > $FILE
+do_rotate $MONITOR $NEW_SCR_ROT
+
+
